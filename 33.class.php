@@ -1,7 +1,7 @@
 <?php
 
 class bike{
-    private $speed;
+    private $speed=1;
     function speedUp(){
         $this -> speed = ($this -> speed<1)?1:$this -> speed*1.2;
     }
