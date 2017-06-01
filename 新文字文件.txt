@@ -1,16 +1,21 @@
-<?php
-$max=6;
-$poker[]=array();
-for($i=0;$i<$max;$i++) $poker[$i]=$i;
+﻿[crit] (22)Invalid argument: Parent: Failed to create the child process. 
+[crit] (OS 6)控制代碼無效。 : master_main: create child process failed. Exiting.
 
-for($i=$max-1;$i>=0;$i--){
-    $indx=rand(0,$i);
-    $temp=$poker[$indx];
-    $poker[$indx]=$poker[$i];
-    $poker[$i]=$temp;
-//    echo $indx.' :';
-//    echo $temp.' :';
-//    echo $i .' <br>';
-}
+在cmd 模式下输入 netsh winsock reset 记得要管理员权限
+然后重启apache.
 
-for($i=0;$i<$max;$i++) echo $poker[$i] ."<br>";
+http://www-01.ibm.com/support/docview.wss?uid=swg1PM49573
+
+
+I finally figured out my problem: (on Win XP)
+
+When I installed wamp, C: was not my root drive - my main drive was E:. 
+Even though I changed the installation path to be E:\wamp 
+I figured that some files in the E:\wamp\bin\apache\Apache2.2.21\conf\extra directory have hard coded paths on C:. 
+Just replace them with the appropriate path on your installation drive. 
+Check the httpd-autoindex, httpd-dav, httpd-multilang-errordoc, httpd-ssl, httpd-vhosts.
+
+Then restart the apache service.
+
+I hope this will help you.
+
