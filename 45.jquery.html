@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<input id="click" type="button" value="click">
+<div id="here"></div>
+<script>
+    $("#click").click(function () {
+        document.innerHTML = setInterval(doIt,1000)
+        function doIt() {
+            $.get("47.php", function(data, status){
+                if (status == 'success'){
+                    $("#here").html(data);
+                }
+            });
+        }
+
+    })
+</script>
+</body>
+</html>
