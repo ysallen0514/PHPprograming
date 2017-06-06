@@ -1,4 +1,4 @@
 <?php
 session_start();
 session_destroy();
-//header("Location:40.login.php");
+header("Location:login.html");

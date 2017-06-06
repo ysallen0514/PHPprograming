@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--//addMemberV2-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            // code for modern browsers
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for old IE browsers
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        function precheck() {
+            var account = document.getElementById("account").value;
+//            alert(account);
+            xmlhttp.onreadystatechange = callBack1;
+            xmlhttp.open("GET", "44.php?a="+account, true);
+            xmlhttp.send();
+        }
+        function callBack1() {
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var result = this.responseText;
+                    if (result != "OK"){
+                        document.getElementById("crs").innerHTML = ("重複");
+                    }else {
+                        document.getElementById("crs").innerHTML = ("很好");
+                    }
+
+                }
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<form action="./totalReview/addAccount.php" method="get">
+    account: <input id="account" name="account" onblur="precheck()"><span id="crs"></span><br>
+    password:<input type="password" name="passwd"><br>
+    realname:<input name="rlname"><br>
+    <input type="submit" value="add">
+</form>
+<hr>
+<div id="test1"></div>
+</body>
+</html>
